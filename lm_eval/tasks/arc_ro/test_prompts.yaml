@@ -1,0 +1,32 @@
+group: test_prompts_ro_arc_challenge
+task: 
+
+    - task: foundational_raw
+      include: _ro_arc_challenge.yaml      
+      doc_to_text: "Întrebare: {{instruction}}\nRăspuns:"
+      doc_to_decontamination_query: "Întrebare: {{instruction}}\nRăspuns:"
+
+    - task: foundational_with_options
+      include: _ro_arc_challenge.yaml      
+      doc_to_text: !function process_arc.doc_to_text_foundational_with_options
+      doc_to_decontamination_query: !function process_arc.doc_to_text_foundational_with_options
+      description: "Următoarele reprezintă întrebări cu variante de răspuns.\n"
+
+    # - task: chat-v1-raw
+    #   include: _ro_arc_challenge.yaml      
+    #   doc_to_text: "[INST] {{instruction}} [/INST]"
+    #   doc_to_decontamination_query: "[INST] {{instruction}} [/INST]"
+    #   fewshot_delimiter: " "
+
+    # - task: chat-v2-raw
+    #   include: _ro_arc_challenge.yaml      
+    #   doc_to_text: "[INST] Întrebare: {{instruction}} \nRăspuns: [/INST]"
+    #   doc_to_decontamination_query: "[INST] Întrebare: {{instruction}} \nRăspuns: [/INST]"
+    #   fewshot_delimiter: "\n"
+
+    - task: chat-v3-raw
+      include: _ro_arc_challenge.yaml
+      doc_to_text: "Întrebare: {{instruction}} \nRăspuns: [/INST]"
+      doc_to_decontamination_query: "Întrebare: {{instruction}} \nRăspuns: [/INST]"
+      description: "[INST] <<SYS>>\n Esti\n<</SYS>>\n\n "
+      fewshot_delimiter: " [INST] "

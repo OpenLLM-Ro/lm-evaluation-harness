@@ -1,0 +1,27 @@
+task: base_ro_arc_challenge
+dataset_name: null
+dataset_path: json
+dataset_kwargs:
+  data_files:
+    train: ./ro_datasets/arc/ro_train.json
+    validation: ./ro_datasets/arc/ro_validation.json
+    test: ./ro_datasets/arc/ro_test.json
+
+
+output_type: multiple_choice
+training_split: train
+validation_split: validation
+test_split: test
+
+doc_to_target: !function process_arc.doc_to_target
+doc_to_choice: !function process_arc.doc_to_choice
+
+should_decontaminate: true
+
+metric_list:
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+
+metadata:
+  version: 1.0

@@ -1,0 +1,4 @@
+task: _foundational_ro_arc_challenge
+include: _ro_arc_challenge.yaml
+doc_to_text: !function process_arc.doc_to_text_foundational
+doc_to_decontamination_query: !function process_arc.doc_to_text_foundational
