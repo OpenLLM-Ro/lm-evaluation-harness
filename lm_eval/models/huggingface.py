@@ -499,6 +499,11 @@ class HFLM(LM):
                         model_kwargs["bnb_4bit_compute_dtype"] = utils.get_dtype(
                             model_kwargs["bnb_4bit_compute_dtype"]
                         )
+            # from transformers import LlamaConfig, LlamaForCausalLM
+            # configuration = LlamaConfig(vocab_size=32000, hidden_size=128, intermediate_size=128, num_hidden_layers=32, num_attention_heads=16)
+            # self._model = LlamaForCausalLM(configuration)
+            # return model
+
             self._model = self.AUTO_MODEL_CLASS.from_pretrained(
                 pretrained,
                 revision=revision,
