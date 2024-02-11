@@ -16,9 +16,13 @@ def doc_to_text_chat(doc):
     return "[INST] {0} [/INST]".format(doc["instruction"])
 
 def doc_to_choice(doc): 
-    choices = [doc["option_a"], doc["option_b"], doc["option_c"], doc["option_d"]]
+    choices = [doc["option_a"], doc["option_b"], doc["option_c"]]#, doc["option_d"]]
+
+    if doc["option_d"] != None:
+        choices.append(doc["option_d"])
     if doc["option_e"] != None:
         choices.append(doc["option_e"])
+
     return choices      
 
 def doc_to_target(doc):
