@@ -515,7 +515,6 @@ class HFLM(LM):
             # from transformers import LlamaConfig, LlamaForCausalLM
             # configuration = LlamaConfig(vocab_size=32000, hidden_size=128, intermediate_size=128, num_hidden_layers=32, num_attention_heads=16)
             # self._model = LlamaForCausalLM(configuration)
-            # return model
 
             self._model = self.AUTO_MODEL_CLASS.from_pretrained(
                 pretrained,
@@ -792,7 +791,10 @@ class HFLM(LM):
             context = context[:-n_spaces]
 
         whole_enc = self.tok_encode(context + continuation, add_special_tokens=False)
+        whole_enc = [self.tokenizer.bos_token_id] + whole_enc + [self.tokenizer.eos_token_id]
+
         context_enc = self.tok_encode(context, add_special_tokens=False)
+        context_enc = [self.tokenizer.bos_token_id] + context_enc
 
         # whole_enc = self.tok_encode(context + continuation)
         # context_enc = self.tok_encode(context, add_special_tokens=False)
