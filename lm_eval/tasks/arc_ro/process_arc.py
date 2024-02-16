@@ -20,12 +20,8 @@ def doc_to_choice(doc):
 
     if doc["option_d"] != None:
         choices.append(doc["option_d"])
-    else:
-        choices.append(" ")
     if doc["option_e"] != None:
         choices.append(doc["option_e"])
-    else:
-        choices.append(" ")
 
     return choices      
 
