@@ -9,8 +9,21 @@ def doc_to_text_foundational_with_options(doc):
     for i, choice in enumerate(choices):
         string += "- {0}\n".format(choice)
     # string = string[:-1]
-    string += "Răspuns:"
+    string += "Răspuns: [/INST]"
     return string
+
+# [INST] <<SYS>>
+# Ești un asistent care răspunde la întrebări cu variante de răspuns. Alege răspunsul corect din variantele disponibile.
+# <</SYS>>
+
+# Întrebare: Rosaria a descoperit un tip de structură pe care nu a putut-o identifica într-o probă de apă dintr-un iaz. Profesoara ei s-a uitat în microscop și i-a explicat că erau zigote produse de unul dintre protiștii din proba ei. La care protist aparțin zigotii?
+# Variante:
+# - ameba
+# - euglena
+# - paramecium
+# - volvox
+# Răspuns: [/INST] volvox
+
 
 def doc_to_text_chat(doc):
     return "[INST] {0} [/INST]".format(doc["instruction"])
