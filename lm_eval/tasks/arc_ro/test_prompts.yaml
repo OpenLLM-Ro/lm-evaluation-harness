@@ -1,10 +1,10 @@
 group: test_prompts_ro_arc_challenge
 task: 
 
-    - task: foundational_raw
-      include: _ro_arc_challenge.yaml      
-      doc_to_text: "Întrebare: {{instruction}}\nRăspuns:"
-      doc_to_decontamination_query: "Întrebare: {{instruction}}\nRăspuns:"
+    # - task: foundational_raw
+    #   include: _ro_arc_challenge.yaml      
+    #   doc_to_text: "Întrebare: {{instruction}}\nRăspuns:"
+    #   doc_to_decontamination_query: "Întrebare: {{instruction}}\nRăspuns:"
 
     # - task: foundational_with_options
     #   include: _ro_arc_challenge.yaml      
