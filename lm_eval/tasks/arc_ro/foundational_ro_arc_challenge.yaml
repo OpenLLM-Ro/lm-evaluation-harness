@@ -1,0 +1,9 @@
+group: foundational_ro_arc_challenge
+task:
+    - task: f_fs0
+      include: _foundational_ro_arc_challenge.yaml
+      num_fewshot: 0
+
+    - task: f_fs1
+      include: _foundational_ro_arc_challenge.yaml
+      num_fewshot: 1

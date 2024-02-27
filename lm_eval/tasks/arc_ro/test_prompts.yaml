@@ -6,10 +6,10 @@ task:
       doc_to_text: "Întrebare: {{instruction}}\nRăspuns:"
       doc_to_decontamination_query: "Întrebare: {{instruction}}\nRăspuns:"
 
-    - task: foundational_with_options
-      include: _ro_arc_challenge.yaml      
-      doc_to_text: !function process_arc.doc_to_text_foundational_with_options
-      doc_to_decontamination_query: !function process_arc.doc_to_text_foundational_with_options
+    # - task: foundational_with_options
+    #   include: _ro_arc_challenge.yaml      
+    #   doc_to_text: !function process_arc.doc_to_text_foundational_with_options
+    #   doc_to_decontamination_query: !function process_arc.doc_to_text_foundational_with_options
 
     - task: chat_raw
       include: _ro_arc_challenge.yaml
@@ -18,9 +18,9 @@ task:
       description: "[INST] <<SYS>>\nEști un asistent folositor, respectuos și onest. Încearcă să ajuți cât mai mult prin informațiile oferite, excluzând răspunsuri toxice, rasiste, sexiste, periculoase și ilegale.\n<</SYS>>\n\n"
       fewshot_delimiter: " [INST] "
 
-    - task: chat_with_options
-      include: _ro_arc_challenge.yaml
-      doc_to_text: !function process_arc.doc_to_text_chat_with_options
-      doc_to_decontamination_query: !function process_arc.doc_to_text_chat_with_options
-      description: "[INST] <<SYS>>\nEști un asistent care răspunde la întrebări cu variante de răspuns. Alege răspunsul corect din variantele disponibile.\n<</SYS>>\n\n"
-      fewshot_delimiter: " [INST] "
+    # - task: chat_with_options
+    #   include: _ro_arc_challenge.yaml
+    #   doc_to_text: !function process_arc.doc_to_text_chat_with_options
+    #   doc_to_decontamination_query: !function process_arc.doc_to_text_chat_with_options
+    #   description: "[INST] <<SYS>>\nEști un asistent care răspunde la întrebări cu variante de răspuns. Alege răspunsul corect din variantele disponibile.\n<</SYS>>\n\n"
+    #   fewshot_delimiter: " [INST] "
