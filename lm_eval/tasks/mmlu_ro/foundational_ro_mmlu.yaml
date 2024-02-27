@@ -1,0 +1,10 @@
+group: foundational_ro_mmlu
+task:
+
+  - task: f_fs0
+    include: _foundational_ro_mmlu.yaml
+    num_fewshot: 0
+
+  - task: f_fs1
+    include: _foundational_ro_mmlu.yaml
+    num_fewshot: 1
