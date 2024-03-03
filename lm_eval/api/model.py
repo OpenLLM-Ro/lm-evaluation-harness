@@ -298,7 +298,7 @@ class TemplateLM(LM):
             continuation = context[-n_spaces:] + continuation
             context = context[:-n_spaces]
 
-        whole_enc = self.tok_encode(context + continuation)
+        whole_enc = self.tok_encode(context + continuation) + [self.tokenizer.eos_token_id]
         context_enc = self.tok_encode(context)
 
         context_enc_len = len(context_enc)
