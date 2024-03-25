@@ -99,6 +99,7 @@ class HFLM(TemplateLM):
         trust_remote_code: Optional[bool] = False,
         use_fast_tokenizer: Optional[bool] = True,
         add_bos_token: Optional[bool] = False,
+        prefix_token_id: Optional[int] = None,
         # arguments used for splitting a model across GPUs naively.
         # only used if `parallelize=True`.
         parallelize: Optional[bool] = False,
@@ -341,6 +342,12 @@ class HFLM(TemplateLM):
             self._rank = 0
             self._world_size = 1
 
+        self.custom_prefix_token_id = prefix_token_id
+        if prefix_token_id is not None:
+            eval_logger.info(
+                f"Loglikelihood prefix token id used in evaluation: {self.prefix_token_id}"
+            )
+
     @property
     def config(self):
         # return the associated transformers.AutoConfig for the given pretrained model.
@@ -357,6 +364,15 @@ class HFLM(TemplateLM):
     @property
     def eot_token_id(self):
         # we use EOT because end of *text* is more accurate for what we're doing than end of *sentence*
+        return self.tokenizer.eos_token_id
+
+    @property
+    def prefix_token_id(self):
+        # it is used as prefix for loglikelihood
+        if self.custom_prefix_token_id is not None:
+            return self.custom_prefix_token_id
+        if self.tokenizer.bos_token_id is not None:
+            return self.tokenizer.bos_token_id
         return self.tokenizer.eos_token_id
 
     @property
@@ -795,7 +811,9 @@ class HFLM(TemplateLM):
 
         return logits
 
-    def loglikelihood_rolling(self, requests: List[Instance]) -> List[float]:
+    def loglikelihood_rolling(
+        self, requests: List[Instance], disable_tqdm: bool = False
+    ) -> List[float]:
         loglikelihoods = []
 
         adaptive_batch_size = None
@@ -806,13 +824,15 @@ class HFLM(TemplateLM):
             print(f"Determined Largest batch size: {batch_size}")
             adaptive_batch_size = batch_size
 
-        for (string,) in tqdm([req.args for req in requests], disable=(self.rank != 0)):
+        for (string,) in tqdm(
+            [req.args for req in requests], disable=(disable_tqdm or (self.rank != 0))
+        ):
             rolling_token_windows = list(
                 map(
                     utils.make_disjoint_window,
                     utils.get_rolling_token_windows(
                         token_list=self.tok_encode(string),
-                        prefix_token=self.eot_token_id,
+                        prefix_token=self.prefix_token_id,
                         max_seq_len=self.max_length,
                         context_len=1,
                     ),
@@ -892,7 +912,7 @@ class HFLM(TemplateLM):
         def _lookup_one_token_cont(req: Tuple[Tuple[str, str], List[int], List[int]]):
             """Defines the key to group and lookup one-token continuations"""
             # Use with group_by="contexts" (optional)"
-            # allows for the creation of a lookup, so we can re-use logits in case of one-token continuations.
+            # allows for the creation of a lookup, so we can reuse logits in case of one-token continuations.
             # speeds up some multiple-choice tasks proportionally to the number of choices.
             # groups requests by context+continuation[:-1] and infer on one request/group.
             return req[-2] + req[-1][:-1]
@@ -1084,7 +1104,9 @@ class HFLM(TemplateLM):
 
         return re_ord.get_original(res)
 
-    def generate_until(self, requests: List[Instance]) -> List[str]:
+    def generate_until(
+        self, requests: List[Instance], disable_tqdm: bool = False
+    ) -> List[str]:
         res = []
 
         def _collate(req: Tuple[str, dict]):
@@ -1100,7 +1122,7 @@ class HFLM(TemplateLM):
 
         pbar = tqdm(
             total=len(requests),
-            disable=(self.rank != 0),
+            disable=(disable_tqdm or (self.rank != 0)),
             desc="Running generate_until requests",
         )
         adaptive_batch_size = None
@@ -1147,7 +1169,7 @@ class HFLM(TemplateLM):
                 if "until" in kwargs.keys():
                     until = kwargs.pop("until")
                     if isinstance(until, str):
-                        until = [kwargs]
+                        until = [until]
                     elif not isinstance(until, list):
                         raise ValueError(
                             f"Expected `kwargs['until']` to be of type Union[str,list] but got {until}"
