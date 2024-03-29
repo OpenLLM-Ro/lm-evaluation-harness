@@ -267,13 +267,14 @@ class HFLM(TemplateLM):
             else:
                 self.tokenizer.add_special_tokens({"pad_token": "<|pad|>"})
 
-        # TODO: override this for Gemma
-        self.add_bos_token = add_bos_token
-        if getattr(self.config, "model_type", None) == "gemma":
-            self.add_bos_token = True
-            eval_logger.info(
-                f"Model type is '{self.config.model_type}', a BOS token will be used as Gemma underperforms without it."
-            )
+        # # TODO: override this for Gemma
+        # self.add_bos_token = add_bos_token
+        # if getattr(self.config, "model_type", None) == "gemma":
+        #     self.add_bos_token = True
+        #     eval_logger.info(
+        #         f"Model type is '{self.config.model_type}', a BOS token will be used as Gemma underperforms without it."
+        #     )
+        # always add bos token
         self.add_bos_token = True
 
         self._max_length = max_length
@@ -542,13 +543,13 @@ class HFLM(TemplateLM):
             # configuration = LlamaConfig(vocab_size=32000, hidden_size=128, intermediate_size=128, num_hidden_layers=32, num_attention_heads=16)
             # self._model = LlamaForCausalLM(configuration)
 
-            self._model = self.AUTO_MODEL_CLASS.from_pretrained(
-                pretrained,
-                revision=revision,
-                torch_dtype=get_dtype(dtype),
-                trust_remote_code=trust_remote_code,
-                **model_kwargs,
-            )
+            # self._model = self.AUTO_MODEL_CLASS.from_pretrained(
+            #     pretrained,
+            #     revision=revision,
+            #     torch_dtype=get_dtype(dtype),
+            #     trust_remote_code=trust_remote_code,
+            #     **model_kwargs,
+            # )
         else:
             try:
                 from auto_gptq import AutoGPTQForCausalLM

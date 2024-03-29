@@ -324,6 +324,10 @@ class TemplateLM(LM):
             else:
                 context_enc, continuation_enc = self._encode_pair(context, continuation)
 
+            # print(context_enc)
+            # print(continuation_enc)
+            # import sys
+            # sys.exit()
             new_reqs.append(((context, continuation), context_enc, continuation_enc))
 
         return self._loglikelihood_tokens(new_reqs, disable_tqdm=disable_tqdm)
