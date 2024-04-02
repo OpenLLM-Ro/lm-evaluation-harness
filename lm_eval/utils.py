@@ -240,7 +240,6 @@ def make_table(result_dict, column: str = "results"):
     latex_writer.headers = all_headers
 
     values = []
-
     for k, dic in result_dict[column].items():
         version = result_dict["versions"].get(k, "N/A")
         n = str(result_dict["n-shot"][k])
@@ -262,6 +261,10 @@ def make_table(result_dict, column: str = "results"):
                 values.append([k, version, f, n, m, "%.4f" % v, "", ""])
             k = ""
             version = ""
+
+    if len(values) > 1:
+        values[1:] = sorted(values[1:], key=lambda x: int(x[0].split("_fs")[1]))
+        
     md_writer.value_matrix = values
     latex_writer.value_matrix = values
 
