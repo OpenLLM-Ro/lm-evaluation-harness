@@ -1,0 +1,20 @@
+task: base_ro_winogrande
+dataset_name: null
+dataset_path: json
+dataset_kwargs:
+  data_files:
+    train: ./ro_datasets/winogrande/train_debiased.json
+    validation: ./ro_datasets/winogrande/dev.json
+
+
+output_type: multiple_choice
+training_split: train
+validation_split: validation
+
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0
