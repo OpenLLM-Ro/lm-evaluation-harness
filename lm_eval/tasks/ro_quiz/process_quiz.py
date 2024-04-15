@@ -1,24 +1,22 @@
 import sys
 
 def doc_to_choice(doc): 
-    choices = [doc["option_A"], doc["option_B"]]
-
+    choices = ["A", "B"]
     if doc["option_C"] != None:
-        choices.append(doc["option_C"])
+        choices.append("C")
     if doc["option_D"] != None:
-        choices.append(doc["option_D"])
+        choices.append("D")
     if doc["option_E"] != None:
-        choices.append(doc["option_E"])
+        choices.append("E")
     if doc["option_F"] != None:
-        choices.append(doc["option_F"])
+        choices.append("F")
     if doc["option_G"] != None:
-        choices.append(doc["option_G"])
+        choices.append("G")
 
     return choices      
 
 def doc_to_target(doc):
-    print(doc)
-    return chr(ord("A")+doc["answer"])
+    return doc["answer"]
 
 def doc_to_text(doc):
     choices = [doc["option_A"], doc["option_B"]]
