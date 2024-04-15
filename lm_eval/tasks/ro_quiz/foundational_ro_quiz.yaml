@@ -1,0 +1,18 @@
+group: foundational_ro_quiz
+task:
+
+  - task: f_fs0
+    include: _foundational_ro_quiz.yaml
+    num_fewshot: 0
+
+  - task: f_fs1
+    include: _foundational_ro_quiz.yaml
+    num_fewshot: 1
+  
+  - task: f_fs3
+    include: _foundational_ro_quiz.yaml
+    num_fewshot: 3
+
+  - task: f_fs5
+    include: _foundational_ro_quiz.yaml
+    num_fewshot: 5

@@ -1,0 +1,5 @@
+task: _foundational_ro_quiz
+include: _ro_quiz.yaml
+
+doc_to_text: !function process_quiz.doc_to_text
+
