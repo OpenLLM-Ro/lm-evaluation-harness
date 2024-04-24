@@ -333,8 +333,11 @@ class TemplateLM(LM):
             else:
                 context_enc, continuation_enc = self._encode_pair(context, continuation)
 
-            # print(context_enc)
-            # print(continuation_enc)
+            # print("Context:", context)
+            # print("Continuation:", continuation)
+            # print()
+            # print("Context_enc:", context_enc)
+            # print("Continuation_ec:", continuation_enc)
             # import sys
             # sys.exit()
             new_reqs.append(((context, continuation), context_enc, continuation_enc))
