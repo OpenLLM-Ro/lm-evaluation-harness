@@ -1,0 +1,19 @@
+task: base_ro_truthfulqa
+dataset_name: null
+dataset_path: json
+dataset_kwargs:
+  data_files:
+    validation: ./ro_datasets/truthful_qa/ro_validation.json
+
+output_type: multiple_choice
+training_split: null
+validation_split: validation
+
+process_results: !function process_truthfulqa.process_results_mc2
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0
