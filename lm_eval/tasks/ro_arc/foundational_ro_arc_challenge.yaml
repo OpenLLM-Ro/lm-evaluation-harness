@@ -7,3 +7,20 @@ task:
     - task: f_fs1
       include: _foundational_ro_arc_challenge.yaml
       num_fewshot: 1
+
+    - task: f_fs3
+      include: _foundational_ro_arc_challenge.yaml
+      num_fewshot: 3
+
+    - task: f_fs5
+      include: _foundational_ro_arc_challenge.yaml
+      num_fewshot: 5
+
+    - task: f_fs10
+      include: _foundational_ro_arc_challenge.yaml
+      num_fewshot: 10
+
+    - task: f_fs25
+      include: _foundational_ro_arc_challenge.yaml
+      num_fewshot: 25
+
