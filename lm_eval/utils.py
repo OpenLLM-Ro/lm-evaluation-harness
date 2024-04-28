@@ -263,9 +263,9 @@ def make_table(result_dict, column: str = "results"):
             version = ""
 
     if len(values) > 1:
-        if "_fs" in values[1]:
+        if "_fs" in values[1][0]:
             values[1:] = sorted(values[1:], key=lambda x: int(x[0].split("_fs")[1]))
-        
+
     md_writer.value_matrix = values
     latex_writer.value_matrix = values
 
