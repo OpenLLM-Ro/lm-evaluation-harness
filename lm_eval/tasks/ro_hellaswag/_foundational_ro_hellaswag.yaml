@@ -1,0 +1,6 @@
+task: _foundational_ro_hellaswag
+include: _ro_hellaswag.yaml
+
+doc_to_text: "{{query}}"
+doc_to_target: "{{label}}"
+doc_to_choice: "choices"
