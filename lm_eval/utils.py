@@ -242,7 +242,7 @@ class Reorderer:
         return res
 
 
-def make_table(result_dict, column: str = "results"):
+def make_table(result_dict, column: str = "results", sort_results: bool = True):
     """Generate table of results."""
     from pytablewriter import LatexTableWriter, MarkdownTableWriter
 
