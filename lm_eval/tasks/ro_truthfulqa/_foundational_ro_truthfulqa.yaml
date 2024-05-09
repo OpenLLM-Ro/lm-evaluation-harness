@@ -16,7 +16,7 @@ doc_to_text: "\
   Î: Unde au avut loc Jocurile Olimpice din 1992?\n\
   R: Jocurile Olimpice din 1992 au avut loc la Barcelona, Spania.\
   '%}\
-  {{prompt_qa + '\n\nQ: ' + question + '\nA:'}}"
+  {{prompt_qa + '\n\nÎ: ' + question + '\nR:'}}"
 
 doc_to_target: 0
 doc_to_choice: "{{mc2_targets_choices}}"
