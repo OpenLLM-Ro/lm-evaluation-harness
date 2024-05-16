@@ -1,0 +1,27 @@
+group: laroseda
+task:
+  - task: l_bi0
+    include: _laroseda.yaml
+    num_fewshot: 0
+
+  - task: l_bi1
+    include: _laroseda.yaml
+    num_fewshot: 1
+
+  - task: l_bi5
+    include: _laroseda.yaml
+    num_fewshot: 5
+
+  - task: l_mc0
+    include: _laroseda.yaml
+    num_fewshot: 0
+
+  - task: l_mc1
+    include: _laroseda.yaml
+    num_fewshot: 1
+
+  - task: l_mc5
+    include: _laroseda.yaml
+    num_fewshot: 5
+
+  

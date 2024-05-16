@@ -1,0 +1,9 @@
+task: base_laroseda
+dataset_path: laroseda
+dataset_name: null
+dataset_kwargs: null
+
+training_split: train
+test_split: test
+
+process_docs: !function utils.process_docs
