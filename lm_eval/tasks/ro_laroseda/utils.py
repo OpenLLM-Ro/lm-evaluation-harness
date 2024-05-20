@@ -22,3 +22,11 @@ def micro_f1_score(items):
         "f1"
     ]
     return f1_score
+
+def weighted_f1_score(items):
+    f1_metric = evaluate.load("f1")
+    golds, preds = list(zip(*items))
+    f1_score = f1_metric.compute(references=golds, predictions=preds, average="weighed")[
+        "f1"
+    ]
+    return f1_score
