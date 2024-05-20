@@ -1300,6 +1300,9 @@ class ConfigurableTask(Task):
                     if "brier_score" in use_metric
                     else {}
                 ),
+                **({"macro_f1": (gold, pred)} if "macro_f1" in use_metric else {}),
+                **({"weighted_f1": (gold, pred)} if "weighted_f1" in use_metric else {}),
+
             }
 
             if "acc_mutual_info" in use_metric:
