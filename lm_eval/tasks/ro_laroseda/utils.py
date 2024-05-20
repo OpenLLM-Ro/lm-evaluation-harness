@@ -1,5 +1,7 @@
 import datasets
 import evaluate
+from lm_eval.api.metrics import f1_score as f1
+from lm_eval.api.registry import register_metric, register_aggregation
 def process_docs(dataset: datasets.Dataset):
     def _helper(doc):
         doc["rating"] = "pozitivă" if doc["starRating"] > 3 else "negativă" 
@@ -14,19 +16,3 @@ def doc_to_target_bc(doc):
 
 def doc_to_target_mc(doc):
     return [1, 2, 4, 5].index(doc["starRating"])
-
-def macro_f1_score(items):
-    f1_metric = evaluate.load("f1")
-    golds, preds = list(zip(*items))
-    f1_score = f1_metric.compute(references=golds, predictions=preds, average="macro")[
-        "f1"
-    ]
-    return f1_score
-
-def weighted_f1_score(items):
-    f1_metric = evaluate.load("f1")
-    golds, preds = list(zip(*items))
-    f1_score = f1_metric.compute(references=golds, predictions=preds, average="weighed")[
-        "f1"
-    ]
-    return f1_score

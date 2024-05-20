@@ -507,3 +507,41 @@ def aggregate_subtask_metrics(metrics, sizes, weight_by_size=True):
     assert len(metrics) == len(sizes)
 
     return sum([metric * size for metric, size in zip(metrics, sizes)]) / sum(sizes)
+
+
+
+@register_aggregation("macro_f1")
+def macro_f1_score(items):
+    f1_metric = hf_evaluate.load("f1")
+    golds, preds = list(zip(*items))
+    f1_score = f1_metric.compute(references=golds, predictions=preds, average="macro")[
+        "f1"
+    ]
+    return f1_score
+
+@register_aggregation("weighted_f1")
+def weighted_f1_score(items):
+    f1_metric = hf_evaluate.load("f1")
+    golds, preds = list(zip(*items))
+    f1_score = f1_metric.compute(references=golds, predictions=preds, average="weighted")[
+        "f1"
+    ]
+    return f1_score
+
+@register_metric(
+    metric="macro_f1",
+    higher_is_better=True,
+    output_type="multiple_choice",
+    aggregation="macro_f1",
+)
+def macro_f1_fn(items):  # This is a passthrough function
+    return items
+
+@register_metric(
+    metric="weighted_f1",
+    higher_is_better=True,
+    output_type="multiple_choice",
+    aggregation="weighted_f1",
+)
+def weighted_f1_fn(items):  # This is a passthrough function
+    return items

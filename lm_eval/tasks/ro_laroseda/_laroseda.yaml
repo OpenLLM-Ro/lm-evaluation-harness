@@ -5,6 +5,7 @@ dataset_kwargs: null
 
 training_split: train
 test_split: test
+fewshot_split: train
 
 output_type: multiple_choice
 process_docs: !function utils.process_docs
@@ -14,12 +15,12 @@ metric_list:
     aggregation: mean
     higher_is_better: true
 
-  - metric: f1
-    aggregation: !function utils.weighted_f1_score
+  - metric: macro_f1
+    aggregation: macro_f1
     higher_is_better: true
     
-  - metric: f1
-    aggregation: !function utils.macro_f1_score
+  - metric: weighted_f1
+    aggregation: weighted_f1
     higher_is_better: true
 metadata:
   version: 1.0
