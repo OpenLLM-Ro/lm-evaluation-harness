@@ -1,25 +1,33 @@
 group: laroseda
 task:
-  # - task: bi_fs0
-  #   include: _laroseda_bc.yaml
-  #   num_fewshot: 0
+  - task: bi_fs0
+    include: _laroseda_bc.yaml
+    num_fewshot: 0
 
-  # - task: bi_fs1
-  #   include: _laroseda_bc.yaml
-  #   num_fewshot: 1
+  - task: bi_fs1
+    include: _laroseda_bc.yaml
+    num_fewshot: 1
 
-  # - task: bi_fs5
-  #   include: _laroseda_bc.yaml
-  #   num_fewshot: 5
+  - task: bi_fs3
+    include: _laroseda_bc.yaml
+    num_fewshot: 3
 
-  # - task: mc_fs0
-  #   include: _laroseda_mc.yaml
-  #   num_fewshot: 0
+  - task: bi_fs5
+    include: _laroseda_bc.yaml
+    num_fewshot: 5
 
-  # - task: mc_fs1
-  #   include: _laroseda_mc.yaml
-  #   num_fewshot: 1
+  - task: mc_fs0
+    include: _laroseda_mc.yaml
+    num_fewshot: 0
 
+  - task: mc_fs1
+    include: _laroseda_mc.yaml
+    num_fewshot: 1
+
+  - task: mc_fs3
+    include: _laroseda_mc.yaml
+    num_fewshot: 3
+    
   - task: mc_fs5
     include: _laroseda_mc.yaml
     num_fewshot: 5
