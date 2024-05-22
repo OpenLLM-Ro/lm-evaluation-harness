@@ -15,4 +15,11 @@ def doc_to_target_bc(doc):
     return 0
 
 def doc_to_target_mc(doc):
-    return [1, 2, 4, 5].index(doc["starRating"])
+    if doc["starRating"] == 1:
+        return "foarte negativă"
+    elif doc["starRating"] == 2:
+        return "negativă"
+    elif doc["starRating"] == 4:
+        return "pozitivă"
+    else:
+        return "foarte pozitivă"
