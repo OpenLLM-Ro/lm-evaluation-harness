@@ -1,0 +1,4 @@
+group: foundational_ro_wmt
+task:
+  - task: wmt-ro-en
+  - task: wmt-en-ro
