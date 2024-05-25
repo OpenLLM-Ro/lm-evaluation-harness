@@ -3,8 +3,9 @@ dataset_path: wmt16
 dataset_name: ro-en
 training_split: train
 validation_split: test
+fewshot_split: train
 output_type: generate_until
-doc_to_text: "Tradu următorul text din engleză în română: {{translation.en}}"
+doc_to_text: "Tradu următorul text din engleză în română: {{translation.en}}\n\n"
 doc_to_target: "{{translation.ro}}"
 metric_list:
   - metric: !function metrics.wer
