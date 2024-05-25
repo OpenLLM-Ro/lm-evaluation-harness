@@ -35,6 +35,3 @@ task:
     - task: f_en-ro_fs5
       include: wmt-en-ro.yaml
       num_fewshot: 5
-
-
-  # - task: wmt-en-ro
