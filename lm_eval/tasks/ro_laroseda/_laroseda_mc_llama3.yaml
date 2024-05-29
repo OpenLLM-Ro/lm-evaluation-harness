@@ -1,0 +1,7 @@
+task: llama3_laroseda_mc
+include: _laroseda.yaml
+doc_to_text: "Recenzie: {{title.strip()}}. {{content.strip()}}\nNotă:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n\n"
+doc_to_choice: ["1", "2", "4", "5"]
+doc_to_target: !function utils.doc_to_target_mc
+description: "<|start_header_id|>system<|end_header_id|>\n\nEști un asistent folositor, respectuos și onest. Încearcă să ajuți cât mai mult prin informațiile oferite, excluzând răspunsuri toxice, rasiste, sexiste, periculoase și ilegale.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nAnalizează următoarea recenzie și caracterizează nota oferită produsului pe o scară de la 1 la 5, cu următoarele opțiuni: 1, 2, 4 sau 5.\n\n"
+num_fewshot: 0

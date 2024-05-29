@@ -1,0 +1,7 @@
+task: llama3_laroseda_bc
+include: _laroseda.yaml
+doc_to_text: "Recenzie: {{title.strip()}}. {{content.strip()}}\nEvaluare:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n\n"
+doc_to_choice: ["negativă", "pozitivă"]
+doc_to_target: !function utils.doc_to_target_bc
+description: "<|start_header_id|>system<|end_header_id|>\n\nEști un asistent folositor, respectuos și onest. Încearcă să ajuți cât mai mult prin informațiile oferite, excluzând răspunsuri toxice, rasiste, sexiste, periculoase și ilegale.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nAnalizează următoarea recenzie și evalueaz-o ca fiind pozitivă sau negativă.\n\n"
+num_fewshot: 0
