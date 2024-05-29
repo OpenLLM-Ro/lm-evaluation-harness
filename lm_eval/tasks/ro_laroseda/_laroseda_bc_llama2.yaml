@@ -1,0 +1,7 @@
+task: llama2_laroseda_bc
+include: _laroseda.yaml
+doc_to_text: "Recenzie: {{title.strip()}}. {{content.strip()}}\nEvaluare: [/INST]"
+doc_to_choice: ["negativă", "pozitivă"]
+doc_to_target: !function utils.doc_to_target_bc
+description: "[INST] <<SYS>>\nEști un asistent folositor, respectuos și onest. Încearcă să ajuți cât mai mult prin informațiile oferite, excluzând răspunsuri toxice, rasiste, sexiste, periculoase și ilegale.\n<</SYS>>\n\nAnalizează următoarea recenzie și evalueaz-o ca fiind pozitivă sau negativă.\n\n"
+num_fewshot: 0
