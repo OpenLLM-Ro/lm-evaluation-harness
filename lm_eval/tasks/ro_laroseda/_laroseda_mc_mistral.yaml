@@ -1,0 +1,7 @@
+task: mistral_laroseda_mc
+include: _laroseda.yaml
+doc_to_text: "Recenzie: {{title.strip()}}. {{content.strip()}}\nNotă: [/INST]"
+doc_to_choice: ["1", "2", "4", "5"]
+doc_to_target: !function utils.doc_to_target_mc
+description: "[INST] Analizează următoarea recenzie și caracterizează nota oferită produsului pe o scară de la 1 la 5, cu următoarele opțiuni: 1, 2, 4 sau 5.\n\n"
+num_fewshot: 0
