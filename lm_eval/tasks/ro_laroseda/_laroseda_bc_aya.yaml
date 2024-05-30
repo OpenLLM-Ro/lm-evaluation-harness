@@ -1,0 +1,7 @@
+task: aya_laroseda_bc
+include: _laroseda.yaml
+doc_to_text: "Recenzie: {{title.strip()}}. {{content.strip()}}\nEvaluare:<|END_OF_TURN_TOKEN|><|START_OF_TURN_TOKEN|><|CHATBOT_TOKEN|>"
+doc_to_choice: ["negativă", "pozitivă"]
+doc_to_target: !function utils.doc_to_target_bc
+description: "<|START_OF_TURN_TOKEN|><|USER_TOKEN|>Analizează următoarea recenzie și evalueaz-o ca fiind pozitivă sau negativă.\n\n"
+num_fewshot: 0
