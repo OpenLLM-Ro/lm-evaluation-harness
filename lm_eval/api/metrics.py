@@ -550,3 +550,39 @@ def macro_f1_fn(items):  # This is a passthrough function
 )
 def weighted_f1_fn(items):  # This is a passthrough function
     return items
+
+
+
+
+@register_aggregation("squad_em")
+def squad_em_score(items):
+    squad_metric = hf_evaluate.load("squad")
+    preds, golds = list(zip(*items))
+    em = squad_metric.compute(predictions=preds, references=golds)["exact_match"]
+    return em
+
+@register_metric(
+    metric="squad_em",
+    higher_is_better=True,
+    output_type="generate_until",
+    aggregation="squad_em",
+)
+def squad_em_fn(items):  # This is a passthrough function
+    return items
+
+
+@register_aggregation("squad_f1")
+def squad_em_score(items):
+    squad_metric = hf_evaluate.load("squad")
+    preds, golds = list(zip(*items))
+    f1 = squad_metric.compute(predictions=preds, references=golds)["f1"]
+    return f1
+
+@register_metric(
+    metric="squad_f1",
+    higher_is_better=True,
+    output_type="generate_until",
+    aggregation="squad_f1",
+)
+def squad_f1_fn(items):  # This is a passthrough function
+    return items
