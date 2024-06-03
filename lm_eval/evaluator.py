@@ -245,7 +245,7 @@ def simple_evaluate(
             # if num_fewshot not provided, and the task does not define a default one, default to 0
             if (default_num_fewshot := task_obj.get_config("num_fewshot")) is None:
                 task_obj.set_config(key="num_fewshot", value=0)
-        
+        # fewshot_random_seed set for tasks, even with a default num_fewshot (e.g. in the YAML file)
         task_obj.set_fewshot_seed(seed=fewshot_random_seed)
         eval_logger.info(
             f"Setting fewshot random generator seed to {fewshot_random_seed}"
