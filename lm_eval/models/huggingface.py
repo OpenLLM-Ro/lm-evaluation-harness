@@ -781,6 +781,10 @@ class HFLM(TemplateLM):
         add_special_tokens = {}
         if self.AUTO_MODEL_CLASS == transformers.AutoModelForCausalLM:
             add_special_tokens = {"add_special_tokens": False or self.add_bos_token}
+        # print(strings)
+        # print(len(strings))
+        # import sys
+        # sys.exit()
 
         encoding = self.tokenizer(
             strings,
@@ -795,6 +799,10 @@ class HFLM(TemplateLM):
                 :, -left_truncate_len:
             ]
         self.tokenizer.padding_side = old_padding_side
+        # print(encoding["input_ids"])
+        # print(encoding["attention_mask"])
+        # import sys
+        # sys.exit()
 
         return encoding["input_ids"], encoding["attention_mask"]
 
@@ -1310,9 +1318,17 @@ class HFLM(TemplateLM):
         """
         Method to apply a chat template to a list of chat history between user and model.
         """
-        return self.tokenizer.apply_chat_template(
-            chat_history, tokenize=False, add_generation_prompt=True
-        )
+        templated_history = self.tokenizer.apply_chat_template(chat_history, tokenize=False, add_generation_prompt=True)
+        bos_token_str = self.tokenizer.decode([self.tokenizer.bos_token_id])
+        # print(templated_history)
+        # print(bos_token_str)
+        if self.add_bos_token == True and templated_history.startswith(bos_token_str):
+            templated_history = templated_history[len(bos_token_str):]
+        # print(templated_history)
+        return templated_history
+        # return self.tokenizer.apply_chat_template(
+        #     chat_history, tokenize=False, add_generation_prompt=True
+        # )
 
     def get_model_info(self) -> dict:
         """
