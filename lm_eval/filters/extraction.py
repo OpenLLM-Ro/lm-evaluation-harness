@@ -44,10 +44,7 @@ class RegexFilter(Filter):
                 filtered.append(match)
             return filtered
 
-        # print(resps)
         filtered_resps = list(map(lambda x: filter_set(x), resps))
-        # print(filtered_resps)
-
         return filtered_resps
 
 
