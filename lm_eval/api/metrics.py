@@ -586,3 +586,38 @@ def squad_em_score(items):
 )
 def squad_f1_fn(items):  # This is a passthrough function
     return items
+
+@register_aggregation("spearman")
+def spearman_score(items):
+    spearmanr_metric = hf_evaluate.load("spearmanr")
+    golds, preds = list(zip(*items))
+    preds = [0.0 if x == "[invalid]" else x for x in preds]
+    spearman = spearmanr_metric.compute(predictions=preds, references=golds)["spearmanr"]
+    return spearman
+
+@register_metric(
+    metric="spearman",
+    higher_is_better=True,
+    output_type="generate_until",
+    aggregation="spearman",
+)
+def spearman_fn(items):  # This is a passthrough function
+    return items
+
+
+@register_aggregation("pearson")
+def pearson_score(items):
+    pearsonr_metric = hf_evaluate.load("pearsonr")
+    golds, preds = list(zip(*items))
+    preds = [0.0 if x == "[invalid]" else x for x in preds]
+    spearman = pearsonr_metric.compute(predictions=preds, references=golds)["pearsonr"]
+    return spearman
+
+@register_metric(
+    metric="pearson",
+    higher_is_better=True,
+    output_type="generate_until",
+    aggregation="pearson",
+)
+def pearson(items):  # This is a passthrough function
+    return items
