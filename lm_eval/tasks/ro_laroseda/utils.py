@@ -17,8 +17,8 @@ def doc_to_target_bc(doc):
 def doc_to_target_mc(doc):
     return [1, 2, 4, 5].index(doc["starRating"])
 
-def doc_to_target_bc_gen():
+def doc_to_target_bc_gen(doc):
     return doc["rating"]
 
-def doc_to_target_mc_gen():
+def doc_to_target_mc_gen(doc):
     return str(doc["starRating"])
