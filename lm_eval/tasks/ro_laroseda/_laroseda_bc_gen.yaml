@@ -7,5 +7,5 @@ filter_list:
   - name: "flexible-extract"
     filter:
       - function: "regex"
-        regex_pattern: "([PpNn][OoEe][ZzGg][IiAa][Tt][Ii][Vv][AaĂă])"
+        regex_pattern: "(^[PpNn][OoEe][ZzGg][IiAa][Tt][Ii][Vv][AaĂă]$)"
       - function: "take_first"

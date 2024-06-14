@@ -8,5 +8,5 @@ filter_list:
     filter:
       - function: "regex"
         group_select: 0
-        regex_pattern: "([0-9]+).*"
+        regex_pattern: "(^[0-9]+$)"
       - function: "take_first"
