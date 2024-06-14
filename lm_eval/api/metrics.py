@@ -8,11 +8,16 @@ import evaluate as hf_evaluate
 import numpy as np
 import sacrebleu
 import sklearn.metrics
+import unicodedata
 
 from lm_eval.api.registry import register_aggregation, register_metric
 
 
+
 eval_logger = logging.getLogger("lm-eval")
+
+def remove_diacritics(text):
+    return unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('utf-8', 'ignore')
 
 
 # Register Aggregations First
@@ -524,6 +529,16 @@ def macro_f1_score(items):
     ]
     return f1_score
 
+@register_aggregation("macro_f1_gen")
+def macro_f1_score_gen(items):
+    f1_metric = sklearn.metrics.f1_score
+    golds, preds = list(zip(*items))
+    golds = [remove_diacritics(gold).lower() for gold in golds]
+    preds = [remove_diacritics(pred).lower() for pred in preds]
+    labels = set(golds)
+    f1_score = f1_metric(y_true=golds, y_pred=preds, labels=list(labels), average="macro")
+    return f1_score
+
 @register_aggregation("weighted_f1")
 def weighted_f1_score(items):
     f1_metric = hf_evaluate.load("f1")
@@ -531,6 +546,16 @@ def weighted_f1_score(items):
     f1_score = f1_metric.compute(references=golds, predictions=preds, average="weighted")[
         "f1"
     ]
+    return f1_score
+
+@register_aggregation("weighted_f1_gen")
+def weighted_f1_score_gen(items):
+    f1_metric = sklearn.metrics.f1_score
+    golds, preds = list(zip(*items))
+    golds = [remove_diacritics(gold).lower() for gold in golds]
+    preds = [remove_diacritics(pred).lower() for pred in preds]
+    labels = set(golds)
+    f1_score = f1_metric(y_true=golds, y_pred=preds, labels=list(labels), average="weighted")
     return f1_score
 
 @register_metric(
