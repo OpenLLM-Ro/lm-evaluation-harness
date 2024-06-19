@@ -259,7 +259,7 @@ class EvaluationTracker:
                 path.mkdir(parents=True, exist_ok=True)
 
                 file_results_samples = path.joinpath(
-                    f"samples_{task_name}_{self.date_id}.jsonl"
+                    f"samples_{task_name}_{self.date_id}.json"
                 )
 
                 for sample in samples:
@@ -285,7 +285,7 @@ class EvaluationTracker:
                         + "\n"
                     )
 
-                    with open(file_results_samples, "a") as f:
+                    with open(file_results_samples, "a", encoding="utf-8") as f:
                         f.write(sample_dump)
 
                 if self.api and self.push_samples_to_hub:
