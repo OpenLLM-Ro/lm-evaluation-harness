@@ -1,10 +1,6 @@
 group: foundational_ro_gsm8k
 task:
 
-  - task: f_fs0
-    include: _foundational_ro_gsm8k.yaml
-    num_fewshot: 0
-
   - task: f_fs1
     include: _foundational_ro_gsm8k.yaml
     num_fewshot: 1
