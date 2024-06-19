@@ -345,18 +345,20 @@ class TemplateLM(LM):
             context_enc = self.tok_encode(context)
             continuation_enc = self.tok_encode(continuation, add_special_tokens=False)
         else:
-            if self.tokenizer.convert_tokens_to_ids("<|eot_id|>") == 128009:
-                # this is most probably llama3; this should actually check if tokenizer is llama3-based
-                eos_token = self.tokenizer.convert_tokens_to_ids("<|eot_id|>")
-            else:
-                eos_token = self.tokenizer.eos_token_id
+            if callable(getattr(self.tokenizer, 'convert_tokens_to_ids', None)):
+                if self.tokenizer.convert_tokens_to_ids("<|eot_id|>") == 128009:
+                    # this is most probably llama3; this should actually check if tokenizer is llama3-based
+                    eos_token = self.tokenizer.convert_tokens_to_ids("<|eot_id|>")
+                else:
+                    eos_token = self.tokenizer.eos_token_id
             
-            whole_enc = self.tok_encode(context + continuation) + [eos_token]
+                whole_enc = self.tok_encode(context + continuation) + [eos_token]
+            else:
+                whole_enc = self.tok_encode(context + continuation)
             context_enc = self.tok_encode(context)
 
             context_enc_len = len(context_enc)
             continuation_enc = whole_enc[context_enc_len:]
-
         return context_enc, continuation_enc
 
     def loglikelihood(
