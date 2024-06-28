@@ -1,0 +1,48 @@
+group: ro_laroseda
+task:
+  - group: laroseda_binary
+    task:
+      - task: bi_fs0
+        include: _laroseda_bc.yaml
+        num_fewshot: 0
+        description: "Analizează următoarea recenzie și evalueaz-o ca fiind pozitivă sau negativă.\n\n"
+
+      - task: bi_fs1
+        include: _laroseda_bc.yaml
+        num_fewshot: 1
+        description: "Analizează următoarea recenzie și evalueaz-o ca fiind pozitivă sau negativă. În continuare vei observa câteva exemple.\n\n"
+
+      - task: bi_fs3
+        include: _laroseda_bc.yaml
+        num_fewshot: 3
+        description: "Analizează următoarea recenzie și evalueaz-o ca fiind pozitivă sau negativă. În continuare vei observa câteva exemple.\n\n"
+
+      - task: bi_fs5
+        include: _laroseda_bc.yaml
+        num_fewshot: 5
+        description: "Analizează următoarea recenzie și evalueaz-o ca fiind pozitivă sau negativă. În continuare vei observa câteva exemple.\n\n"
+
+
+  - group: laroseda_multiclass
+    task:
+      - task: mc_fs0
+        include: _laroseda_mc.yaml
+        num_fewshot: 0
+        description: "Analizează următoarea recenzie și caracterizează nota oferită produsului pe o scară de la 1 la 5, cu următoarele opțiuni: 1, 2, 4 sau 5.\n\n"
+
+      - task: mc_fs1
+        include: _laroseda_mc.yaml
+        num_fewshot: 1
+        description: "Analizează următoarea recenzie și caracterizează nota oferită produsului pe o scară de la 1 la 5, cu următoarele opțiuni: 1, 2, 4 sau 5. În continuare vei observa câteva exemple.\n\n"
+
+      - task: mc_fs3
+        include: _laroseda_mc.yaml
+        num_fewshot: 3
+        description: "Analizează următoarea recenzie și caracterizează nota oferită produsului pe o scară de la 1 la 5, cu următoarele opțiuni: 1, 2, 4 sau 5. În continuare vei observa câteva exemple.\n\n"
+        
+      - task: mc_fs5
+        include: _laroseda_mc.yaml
+        num_fewshot: 5
+        description: "Analizează următoarea recenzie și caracterizează nota oferită produsului pe o scară de la 1 la 5, cu următoarele opțiuni: 1, 2, 4 sau 5. În continuare vei observa câteva exemple.\n\n"
+
+  

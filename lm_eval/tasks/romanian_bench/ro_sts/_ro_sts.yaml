@@ -1,0 +1,42 @@
+task: _ro_sts
+dataset_name: null
+dataset_path: json
+
+dataset_kwargs:
+  data_files:
+    train: ./ro_datasets/sts/sts_train.json
+    validation: ./ro_datasets/sts/sts_dev.json
+    test: ./ro_datasets/sts/sts_test.json
+
+output_type: generate_until
+
+validation_split: validation
+test_split: test
+
+doc_to_text: "Generează un număr între 0 și 1 care descrie similaritatea semantică dintre următoarele două propoziții:\n\nPropoziție 1: {{sentence1}}\nPropoziție 2: {{sentence2}}\nScor de similaritate semantică:"
+doc_to_target: "{{score}}"
+
+generation_kwargs:
+  until:
+    - "\n"
+  do_sample: false
+  temperature: 0.0
+
+filter_list:
+  - name: "strict-match"
+    filter:
+      - function: "regex"
+        regex_pattern: "((0|1)\\.\\d+)"
+      - function: "take_first"
+
+metric_list:
+  - metric: spearman
+    aggregation: spearman
+    higher_is_better: true
+
+  - metric: pearson
+    aggregation: pearson
+    higher_is_better: true
+
+metadata:
+  version: 1.0

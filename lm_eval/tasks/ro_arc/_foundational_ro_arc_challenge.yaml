@@ -1,4 +1,0 @@
-task: _foundational_ro_arc_challenge
-include: _ro_arc_challenge.yaml
-doc_to_text: "Întrebare: {{instruction}}\nRăspuns:"
-doc_to_decontamination_query: "Întrebare: {{instruction}}\nRăspuns:"

@@ -1,5 +1,0 @@
-task: _foundational_ro_mmlu
-include: _ro_mmlu.yaml
-
-doc_to_text: "Întrebare: {{instruction.strip()}}\nVariante:\nA. {{option_a}}\nB. {{option_b}}\nC. {{option_c}}\nD. {{option_d}}\nRăspuns:"
-

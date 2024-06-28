@@ -1,5 +1,0 @@
-task: _foundational_ro_gsm8k
-include: _ro_gsm8k.yaml
-
-doc_to_text: "Întrebare: {{question}}\nRăspuns:"
-

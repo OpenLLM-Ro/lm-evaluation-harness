@@ -1,5 +1,0 @@
-group: foundational_ro_truthfulqa
-task:
-  - task: f_fs0
-    include: _foundational_ro_truthfulqa.yaml
-    num_fewshot: 0

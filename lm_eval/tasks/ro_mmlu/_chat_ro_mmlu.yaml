@@ -1,6 +1,0 @@
-task: _chat_ro_mmlu
-include: _ro_mmlu.yaml
-
-description: "[INST] <<SYS>>\nEști un asistent care răspunde la întrebări cu variante de răspuns. Alege răspunsul corect din variantele disponibile.\n<</SYS>>\n\n"
-doc_to_text: "Întrebare: {{instruction.strip()}}\nVariante:\nA. {{option_a}}\nB. {{option_b}}\nC. {{option_c}}\nD. {{option_d}}\nRăspuns: [/INST]"
-fewshot_delimiter: " [INST] "
