@@ -1,12 +1,5 @@
 task: _ro_sts
-dataset_name: null
-dataset_path: json
-
-dataset_kwargs:
-  data_files:
-    train: ./ro_datasets/sts/sts_train.json
-    validation: ./ro_datasets/sts/sts_dev.json
-    test: ./ro_datasets/sts/sts_test.json
+dataset_path: OpenLLM-Ro/ro_sts
 
 output_type: generate_until
 

@@ -1,19 +1,11 @@
 task: _ro_arc_challenge
-dataset_name: null
-dataset_path: json
-dataset_kwargs:
-  data_files:
-    train: ./ro_datasets/arc/ro_train.json
-    validation: ./ro_datasets/arc/ro_validation.json
-    test: ./ro_datasets/arc/ro_test.json
-
+dataset_path: OpenLLM-Ro/ro_arc_challenge
 
 output_type: multiple_choice
 training_split: train
 validation_split: validation
 test_split: test
 fewshot_split: train
-
 
 doc_to_text: "Întrebare: {{instruction}}\nRăspuns:"
 doc_to_decontamination_query: "Întrebare: {{instruction}}\nRăspuns:"

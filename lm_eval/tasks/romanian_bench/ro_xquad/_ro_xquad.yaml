@@ -1,6 +1,6 @@
 task: _ro_xquad
-dataset_path: "google/xquad"
-dataset_name: "xquad.ro"
+dataset_path: google/xquad
+dataset_name: xquad.ro
 
 output_type: generate_until
 validation_split: validation

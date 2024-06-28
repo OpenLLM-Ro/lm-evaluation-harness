@@ -1,10 +1,5 @@
 task: _ro_gsm8k
-dataset_name: null
-dataset_path: json
-dataset_kwargs:
-  data_files:
-    train: ./ro_datasets/gsm8k/train-00000-of-00001_ro.json
-    test: ./ro_datasets/gsm8k/test-00000-of-00001_ro.json
+dataset_path: OpenLLM-Ro/ro_gsm8k
 
 output_type: generate_until
 training_split: train

@@ -1,11 +1,5 @@
 task: ro_wiki
-dataset_name: null
-dataset_path: json
-
-dataset_kwargs:
-  data_files:
-    validation: ./ro_datasets/wiki/wiki.valid
-    test: ./ro_datasets/wiki/wiki.test
+dataset_path: OpenLLM-Ro/ro_wiki
 
 output_type: loglikelihood_rolling
 validation_split: validation

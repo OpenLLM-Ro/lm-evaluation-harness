@@ -1,9 +1,5 @@
 task: _ro_truthfulqa
-dataset_name: null
-dataset_path: json
-dataset_kwargs:
-  data_files:
-    validation: ./ro_datasets/truthful_qa/ro_validation.json
+dataset_path: OpenLLM-Ro/ro_truthfulqa
 
 output_type: multiple_choice
 training_split: null

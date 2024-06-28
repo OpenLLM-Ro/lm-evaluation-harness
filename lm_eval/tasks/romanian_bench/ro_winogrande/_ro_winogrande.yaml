@@ -1,11 +1,5 @@
 task: _ro_winogrande
-dataset_name: null
-dataset_path: json
-dataset_kwargs:
-  data_files:
-    train: ./ro_datasets/winogrande/train_debiased.json
-    validation: ./ro_datasets/winogrande/dev.json
-
+dataset_path: OpenLLM-Ro/ro_winogrande
 
 output_type: multiple_choice
 training_split: train
