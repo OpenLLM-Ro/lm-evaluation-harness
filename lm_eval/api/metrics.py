@@ -12,6 +12,7 @@ import sklearn.metrics
 import unicodedata
 
 from lm_eval.api.registry import register_aggregation, register_metric
+import evaluate as hf_evaluate
 
 
 
