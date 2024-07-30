@@ -258,7 +258,7 @@ class TaskManager:
             if "include" in config:
                 config = {
                     **utils.load_yaml_config(
-                        yaml_path=None,
+                        yaml_path=self._get_yaml_path(config["include"].split(".yaml")[0]),
                         yaml_config={"include": config.pop("include")},
                         mode="full",
                     ),
