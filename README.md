@@ -1,6 +1,6 @@
 # Evaluation of RoLLMs
 
-Official code used for evaluating Romanian LLMs as proposed in [Masala et al. 2024](https://arxiv.org/abs/2406.18266). This repo is a fork of the popular [EleutherAI/lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) repo used for evaluation LLMs. On top of the existing framework we add a suite of Romanian benchmarks:
+Official code used for evaluating Romanian LLMs as proposed in [Masala et al. 2024](https://arxiv.org/abs/2406.18266). This repo is a fork of the popular [EleutherAI/lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) repo used for LLM evaluation. On top of the existing framework we add a suite of Romanian benchmarks:
 
 - [ro_arc_challenge](https://huggingface.co/datasets/OpenLLM-Ro/ro_arc_challenge)
 - [ro_mmlu](https://huggingface.co/datasets/OpenLLM-Ro/ro_mmlu)
