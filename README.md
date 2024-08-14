@@ -91,3 +91,7 @@ We support wildcards in task names, for example you can run all of the machine-t
       url={https://arxiv.org/abs/2406.18266}, 
 }
 ```
+
+### Acknowledgement
+This repo benefits from [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness). Thanks for their wonderful works.
+
