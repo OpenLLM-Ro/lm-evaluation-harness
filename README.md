@@ -77,7 +77,7 @@ We support wildcards in task names, for example you can run all of the machine-t
 
 
 
-## Cite as
+## Citation
 
 
 ```bibtex
