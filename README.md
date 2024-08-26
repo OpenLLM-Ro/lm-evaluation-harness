@@ -93,5 +93,5 @@ We support wildcards in task names, for example you can run all of the machine-t
 ```
 
 ### Acknowledgement
-This repo benefits from [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness). Thanks for their wonderful works.
+This repo benefits from [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness). We thank them for their wonderful work.
 
