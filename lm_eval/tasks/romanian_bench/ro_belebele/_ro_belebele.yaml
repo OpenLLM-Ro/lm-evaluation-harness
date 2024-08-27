@@ -1,8 +1,13 @@
 task: _ro_belebele
 dataset_path: facebook/belebele
+dataset_name: ron_Latn
+
 
 fewshot_config:
   sampler: first_n
+fewshot_split: test
+test_split: test
+
 output_type: multiple_choice
 
 should_decontaminate: true
