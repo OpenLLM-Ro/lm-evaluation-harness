@@ -8,12 +8,12 @@ Official code used for evaluating Romanian LLMs as proposed in [Masala et al. 20
 - [ro_hellaswag](https://huggingface.co/datasets/OpenLLM-Ro/ro_hellaswag)
 - [ro_gsm8k](https://huggingface.co/datasets/OpenLLM-Ro/ro_gsm8k)
 - [ro_truthfulqa](https://huggingface.co/datasets/OpenLLM-Ro/ro_truthfulqa)
-- ro_laroseda
-- ro_wmt
-- ro_xquad
+- [ro_laroseda](https://huggingface.co/datasets/universityofbucharest/laroseda)
+- [ro_wmt](https://huggingface.co/datasets/wmt/wmt16)
+- [ro_xquad](https://huggingface.co/datasets/google/xquad)
 - [ro_sts](https://huggingface.co/datasets/OpenLLM-Ro/ro_sts)
 - [ro_wiki](https://huggingface.co/datasets/OpenLLM-Ro/ro_wiki)
-
+- [ro_belebele](https://huggingface.co/datasets/facebook/belebele)
 
 
 ## Install
