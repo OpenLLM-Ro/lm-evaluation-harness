@@ -15,7 +15,7 @@ doc_to_choice: !function process_vsfm.doc_to_choice
 should_decontaminate: true
 
 metric_list:
-  - metric: acc_norm
+  - metric: acc
     aggregation: mean
     higher_is_better: true
 
