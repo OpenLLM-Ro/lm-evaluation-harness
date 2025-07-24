@@ -13,7 +13,7 @@ import unicodedata
 
 from lm_eval.api.registry import register_aggregation, register_metric
 import evaluate as hf_evaluate
-
+from sklearn.metrics import average_precision_score as average_precision_score_sklearn
 
 
 eval_logger = logging.getLogger("lm-eval")
@@ -574,6 +574,24 @@ def aggregate_subtask_metrics(metrics, sizes, weight_by_size=True):
     return sum([metric * size for metric, size in zip(metrics, sizes)]) / sum(sizes)
 
 
+@register_aggregation("macro_precision")
+def macro_precision_score(items):
+    precision_metric = hf_evaluate.load("precision")
+    golds, preds = list(zip(*items))
+    precision_score = precision_metric.compute(references=golds, predictions=preds, average="macro")[
+        "precision"
+    ]
+    return precision_score
+
+@register_aggregation("macro_recall")
+def macro_recall_score(items):
+    recall_metric = hf_evaluate.load("recall")
+    golds, preds = list(zip(*items))
+    recall_score = recall_metric.compute(references=golds, predictions=preds, average="macro")[
+        "recall"
+    ]
+    return recall_score
+
 
 @register_aggregation("macro_f1")
 def macro_f1_score(items):
@@ -612,6 +630,26 @@ def weighted_f1_score_gen(items):
     labels = set(golds)
     f1_score = f1_metric(y_true=golds, y_pred=preds, labels=list(labels), average="weighted")
     return f1_score
+
+@register_metric(
+    metric="macro_precision",
+    higher_is_better=True,
+    output_type="multiple_choice",
+    aggregation="macro_precision",
+)
+def macro_precision_fn(items):  # This is a passthrough function
+    return items
+
+
+@register_metric(
+    metric="macro_recall",
+    higher_is_better=True,
+    output_type="multiple_choice",
+    aggregation="macro_recall",
+)
+def macro_recall_fn(items):  # This is a passthrough function
+    return items
+
 
 @register_metric(
     metric="macro_f1",
@@ -701,3 +739,35 @@ def pearson_score(items):
 )
 def pearson(items):  # This is a passthrough function
     return items
+
+
+@register_aggregation("roc_auc")
+def roc_auc_score(items):
+    roc_auc_metric = hf_evaluate.load("roc_auc")
+    golds, probs = list(zip(*items))
+    roc_auc_score = roc_auc_metric.compute(references=golds, prediction_scores=np.array(probs)[:, 1])["roc_auc"]
+    return roc_auc_score
+
+    @register_metric(
+    metric="roc_auc",
+    higher_is_better=True,
+    output_type="multiple_choice",
+    aggregation="roc_auc",
+)
+    def roc_auc_fn(items):  # This is a passthrough function
+        return items
+
+@register_aggregation("average_precision")
+def average_precision_score(items):
+    golds, probs = list(zip(*items))
+    average_precision = average_precision_score_sklearn(golds, np.array(probs)[:, 1], average="macro")
+    return average_precision
+
+    @register_metric(
+    metric="average_precision",
+    higher_is_better=True,
+    output_type="multiple_choice",
+    aggregation="average_precision",
+)
+    def average_precision_fn(items):  # This is a passthrough function
+        return items
