@@ -1,4 +1,4 @@
-group: ro_vfsm
+group: ro_vsfm
 task:
     - task: vsfm_fs0
       include: _ro_vsfm.yaml
