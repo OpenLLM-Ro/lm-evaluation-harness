@@ -1373,7 +1373,10 @@ class ConfigurableTask(Task):
                 # and this stores our "regular" conditional loglikelihoods
                 lls = lls[::2]
 
+            # print(lls[:3])
             pred = np.argmax(lls)
+            # print()
+            # print(pred)
             pred_norm = np.argmax(lls / completion_len)
 
             if self.multiple_input:
@@ -1426,9 +1429,12 @@ class ConfigurableTask(Task):
                     if "brier_score" in use_metric
                     else {}
                 ),
+                **({"macro_precision": (gold, pred)} if "macro_precision" in use_metric else {}),
+                **({"macro_recall": (gold, pred)} if "macro_recall" in use_metric else {}),
                 **({"macro_f1": (gold, pred)} if "macro_f1" in use_metric else {}),
                 **({"weighted_f1": (gold, pred)} if "weighted_f1" in use_metric else {}),
-
+                **({"average_precision": (gold, prob_norm)} if "average_precision" in use_metric else {}),
+                **({"roc_auc": (gold, prob_norm)} if "roc_auc" in use_metric else {}),
             }
 
             if "acc_mutual_info" in use_metric:
